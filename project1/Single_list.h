@@ -161,6 +161,7 @@ Type Single_list<Type>::pop_front() {
 template <typename Type>
 int Single_list<Type>::erase( Type const &obj ) {
 	// enter your implementation here
+	// This is some test comment
 	return 0;
 }
 
