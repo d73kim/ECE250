@@ -1,0 +1,31 @@
+new
+push_front 3
+push_front 7
+assign
+  pop_front 7
+  size 1
+  delete
+exit
+front 7
+back 3
+count 3 1
+count 5 0
+count 7 1
+head
+  retrieve 7
+  next
+  retrieve 3
+  next0
+exit
+pop_front 7
+head
+  retrieve 3
+  next0
+exit
+front 3
+back 3
+pop_front 3
+size 0
+empty 1
+delete
+summary
