@@ -255,7 +255,7 @@ Type Single_list<Type>::pop_front() {
 		return tmp;
 	}
 }
-
+//this is test comment
 template <typename Type>
 int Single_list<Type>::erase(Type const &obj) {
 	// come back to this
