@@ -261,19 +261,38 @@ int Single_list<Type>::erase(Type const &obj) {
 	// come back to this
 	int nodeCount = 0;
 	Single_node<Type> *currentNode = head();
-	Single_node<Type> *previousNode = 0;
+	Single_node<Type> *previousNode = nullptr;
 
-	for (int i = 0; i < size(); i++)
+	int counter = size();
+
+	for (int i = 0; i < counter; i++)
 	{
 		if (currentNode->retrieve() == obj)
 		{
-			previousNode = currentNode;
-			delete previousNode;
-			currentNode = currentNode->next();
+			if (currentNode == head())
+			{
+				pop_front();
+				currentNode = head();
+			}
+			else
+			{
+				previousNode->next_node = currentNode->next();
+				Single_node<Type> *tempNode = currentNode;
+
+				delete tempNode;
+
+				currentNode = currentNode->next();
+				node_count--;
+			}
+
 			nodeCount++;
 		}
+		else
+		{
+			previousNode = currentNode;
+			currentNode = currentNode->next();
+		}
 	}
-
 
 	return nodeCount;
 }
