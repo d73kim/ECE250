@@ -259,7 +259,7 @@ Type Single_list<Type>::pop_front() {
 template <typename Type>
 int Single_list<Type>::erase(Type const &obj) {
 	// come back to this
-	int nodeCount = 0;
+	int deleteCount = 0;
 	Single_node<Type> *currentNode = head();
 	Single_node<Type> *previousNode = nullptr;
 
@@ -274,6 +274,12 @@ int Single_list<Type>::erase(Type const &obj) {
 				pop_front();
 				currentNode = head();
 			}
+			else if (currentNode == tail()) 
+			{
+				list_tail = previousNode;
+				previousNode->next_node = nullptr;
+				delete currentNode;
+			}
 			else
 			{
 				previousNode->next_node = currentNode->next();
@@ -285,7 +291,7 @@ int Single_list<Type>::erase(Type const &obj) {
 				node_count--;
 			}
 
-			nodeCount++;
+			deleteCount++;
 		}
 		else
 		{
@@ -294,7 +300,7 @@ int Single_list<Type>::erase(Type const &obj) {
 		}
 	}
 
-	return nodeCount;
+	return deleteCount;
 }
 
 // You can modify this function however you want:  it will not be tested
