@@ -62,13 +62,13 @@ next_node(n) {
 
 template <typename Type>
 Type Single_node<Type>::retrieve() const {
-	// returns current node
+	// returns the actual value of the current node
 	return element;
 }
 
 template <typename Type>
 Single_node<Type> *Single_node<Type>::next() const {
-	// returns next node
+	// returns next node pointer
 	return next_node;
 }
 

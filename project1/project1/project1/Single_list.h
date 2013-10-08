@@ -76,10 +76,16 @@ Single_list<Type>::Single_list(Single_list<Type> const &list) :
 list_head(0),
 list_tail(0),
 node_count(0) {
-	// copy constructor creates new instances of the linked list.
-	list_head = list.list_head;
-	list_tail = list.list_tail;
-	node_count = list.node_count;
+	// copy constructor creates new instances of the linked list
+	// need to deep copy, not shallow copy.
+	// make a use of push_back()
+	for (Single_node<Type> *node = list.head(); node != 0; node = node->next())
+	{
+		//std::cout << node << std::endl;
+		push_back(node->retrieve());
+
+	}
+	
 }
 
 template <typename Type>
@@ -211,16 +217,24 @@ template <typename Type>
 void Single_list<Type>::push_back(Type const &obj) {
 	// enter your implementation here
 	Single_node<Type> *newNode = new Single_node<Type>(obj, 0);
-	// used to be, list_tail-> next() = newNode; why doesn't work?
-	newNode = list_tail-> next();
-	list_tail = newNode;
-	// checking to see if the list is already empty and if it is, head pointer is set to the new node
+
+
 	if (empty())
 	{
+		list_tail = newNode;
 		list_head = list_tail;
+	}
+	else
+	{
+		// used to be, list_tail-> next() = newNode; why doesn't work?
+		list_tail->next_node = newNode;
+		//newNode = list_tail-> next();
+		list_tail = newNode;
+		// checking to see if the list is already empty and if it is, head pointer is set to the new node
 	}
 	// incrementing the node counter
 	node_count++;
+
 }
 
 template <typename Type>
