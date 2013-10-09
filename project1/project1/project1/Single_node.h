@@ -68,7 +68,7 @@ Type Single_node<Type>::retrieve() const {
 
 template <typename Type>
 Single_node<Type> *Single_node<Type>::next() const {
-	// returns next node pointer
+	// returns pointer to the next node
 	return next_node;
 }
 
