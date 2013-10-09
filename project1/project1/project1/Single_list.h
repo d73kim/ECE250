@@ -1,4 +1,4 @@
-﻿#ifndef SINGLE_LIST_H
+#ifndef SINGLE_LIST_H
 #define SINGLE_LIST_H
 
 /*****************************************
@@ -250,6 +250,10 @@ Type Single_list<Type>::pop_front() {
 		tmp = list_head->retrieve();
 		Single_node<Type> *tmpNode = list_head;
 		list_head = tmpNode->next();
+		if (size() == 1)
+		{
+			list_tail = list_head;
+		}
 		delete tmpNode;
 		node_count--;
 		return tmp;
@@ -276,9 +280,12 @@ int Single_list<Type>::erase(Type const &obj) {
 			}
 			else if (currentNode == tail()) 
 			{
+				Single_node<Type> *tempNode = currentNode;
 				list_tail = previousNode;
-				previousNode->next_node = nullptr;
-				delete currentNode;
+				currentNode = previousNode;
+				currentNode->next_node = nullptr;
+				delete tempNode;
+				node_count--;
 			}
 			else
 			{
