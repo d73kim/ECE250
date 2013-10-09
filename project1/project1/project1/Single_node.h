@@ -2,7 +2,7 @@
 #define SINGLE_NODE_H
 
 /*****************************************
-* UW User ID:  uwuserid
+* UW User ID:  d73kim
 * Submitted for ECE 250
 * Department of Electrical and Computer Engineering
 * University of Waterloo
