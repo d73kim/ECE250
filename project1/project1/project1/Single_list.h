@@ -28,6 +28,7 @@ private:
 	int node_count;
 
 public:
+	// constructor, copy-constructor, deconstructor
 	Single_list();
 	Single_list(Single_list const &);
 	~Single_list();
