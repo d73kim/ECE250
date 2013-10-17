@@ -76,14 +76,14 @@ entry_count(queue.entry_count) {
 	{
 		array[ihead - i] = queue.array[ihead - i];
 	}
-	// Enter your implementation here.
+
 }
 
 // destructor
 template <typename Type>
 Dynamic_queue_as_array<Type>::~Dynamic_queue_as_array() {
 	delete[] array;
-	ihead = -1;
+	ihead = 0;
 	itail = 0;
 	entry_count = 0;
 }
@@ -151,12 +151,25 @@ void Dynamic_queue_as_array<Type>::enqueue(Type const &obj) {
 	if (entry_count == array_capacity)
 	{
 		// is this the best solution?
-		itail = (itail + 1)%array_capacity;
+		Type *doubleArray = new Type[entry_count*2];
+		//copy
+		for (int i = 0; i < array_capacity; i++)
+		{
+			doubleArray[i] = array[i];
+		}
+		array = doubleArray;
+		
+		array[itail] = obj;
+		++entry_count;
+		array_capacity = array_capacity * 2;
+		++itail;
+
 	}
 	else
 	{
 		array[itail] = obj;
 		++itail;
+
 		++entry_count;
 		
 	}
@@ -171,6 +184,7 @@ else pops the object that is in the front of the queue
 template <typename Type>
 Type Dynamic_queue_as_array<Type>::dequeue() {
 	Type tmp;
+	int q;
 
 	if (empty())
 	{
@@ -179,9 +193,32 @@ Type Dynamic_queue_as_array<Type>::dequeue() {
 	else
 	{
 		tmp = array[ihead];
+		array[ihead] = 0;
 		--entry_count;
 		--ihead;
+		if (ihead < 0)
+		{
+			ihead = array_capacity - 1;
+		}
+		if (entry_count < array_capacity / 4)
+		{
+			Type *rowoonArray = new Type[array_capacity / 2];
+
+			q = ihead;
+
+			for (int i = 0; i < array_capacity/4; i++)
+			{
+				q += i;
+				if (q >= array_capacity - 1) {
+					q = 0;
+				}
+
+				rowoonArray[i] = array[q];
+			}
+		}
+
 		return tmp;
+
 	}
 }
 
