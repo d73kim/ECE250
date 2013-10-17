@@ -200,7 +200,7 @@ Type Dynamic_queue_as_array<Type>::dequeue() {
 		{
 			ihead = array_capacity - 1;
 		}
-		if (entry_count < array_capacity / 4)
+		if (entry_count < array_capacity / 4)//made some changes
 		{
 			Type *rowoonArray = new Type[array_capacity / 2];
 
