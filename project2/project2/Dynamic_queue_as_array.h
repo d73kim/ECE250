@@ -20,10 +20,10 @@ private:
 	int initial_capacity;
 	int array_capacity;
 	Type *array;
-	int ihead; // index of the object at the front of the queue
-	int itail; // the index of the most recently pushed object
-	int entry_count; // Assume this is queue_size for now
-	// other integer member variables, as necessary
+	int ihead;
+	int itail; 
+	int entry_count;
+
 
 public:
 	Dynamic_queue_as_array(int = 10);
@@ -47,7 +47,8 @@ public:
 	friend std::ostream &operator << (std::ostream &, Dynamic_queue_as_array<T> const &);
 };
 
-// constructor. come back to this
+// constructor. Made ihead and itail to point at the same entry. 
+// They are both pointing at the index 0. 
 template <typename Type>
 Dynamic_queue_as_array<Type>::Dynamic_queue_as_array(int n) :
 initial_capacity(std::max(n,1)),
@@ -56,11 +57,15 @@ array(new Type[initial_capacity]),
 ihead(0),
 itail(0),
 entry_count(0) {
-	// Enter your implementation here.
+	
 }
 
-// copy constructor. come back to this
-// use enqueue?
+
+/*
+	copy constrctor. looping through the entire array and copying the element
+	I have an access to the queue arreay
+*/
+
 template <typename Type>
 Dynamic_queue_as_array<Type>::Dynamic_queue_as_array(Dynamic_queue_as_array const &queue) :
 initial_capacity(queue.initial_capacity),
@@ -69,9 +74,7 @@ array(new Type[array_capacity]),
 ihead(queue.ihead),
 itail(queue.itail),
 entry_count(queue.entry_count) {
-	// The above initializations copy the values of the appropriate
-	// member variables and allocate memory for the data structure;
-	// however, you must still copy the stored objects.
+
 	for (int i = 0; i < entry_count; i++)
 	{
 		array[ihead - i] = queue.array[ihead - i];
@@ -79,7 +82,10 @@ entry_count(queue.entry_count) {
 
 }
 
-// destructor
+
+/*
+	setting ihead, itail and entry_count to 0 and delete the array
+*/
 template <typename Type>
 Dynamic_queue_as_array<Type>::~Dynamic_queue_as_array() {
 	delete[] array;
@@ -88,11 +94,18 @@ Dynamic_queue_as_array<Type>::~Dynamic_queue_as_array() {
 	entry_count = 0;
 }
 
+/*
+	returing the current number of element in the array
+*/
 template <typename Type>
 int Dynamic_queue_as_array<Type>::size() const {
 	return entry_count;
 }
 
+/*
+	returning the capacity of the array. capacity is 10 by default.
+	However I can set it to for example, size of 3 in the beginnning
+*/
 template <typename Type>
 int Dynamic_queue_as_array<Type>::capacity() const {
 	return array_capacity;
@@ -113,8 +126,8 @@ bool Dynamic_queue_as_array<Type>::empty() const {
 }
 
 /*
-throws underflow() if the queue is empty
-else returns the object at the front of the queue
+	throws underflow() if the queue is empty
+	else returns the object at the front of the queue
 */
 template <typename Type>
 Type Dynamic_queue_as_array<Type>::head() const {
@@ -145,14 +158,20 @@ Dynamic_queue_as_array<Type> &Dynamic_queue_as_array<Type>::operator = (Dynamic_
 	return *this;
 }
 
-//push
+/*
+	enqueue(push) method. object gets pushed to the back of the array.
+	two scenarios to think about, when the array is full and when the array is not full.
+	when the array is full, need to make another array that is doubled the size of initial array created.
+	copying the element in the new array index by index. updating the array to be new array created.
+	When the array is not full, I enqueue the object in the tail.
+*/
 template <typename Type>
 void Dynamic_queue_as_array<Type>::enqueue(Type const &obj) {
 	if (entry_count == array_capacity)
 	{
-		// is this the best solution?
+		
 		Type *doubleArray = new Type[entry_count*2];
-		//copy
+		
 		for (int i = 0; i < array_capacity; i++)
 		{
 			doubleArray[i] = array[i];
@@ -169,17 +188,14 @@ void Dynamic_queue_as_array<Type>::enqueue(Type const &obj) {
 	{
 		array[itail] = obj;
 		++itail;
-
 		++entry_count;
 		
 	}
 }
 
-
-
 /*
-throws underflow() if the queue is empty
-else pops the object that is in the front of the queue
+	throws underflow() if the queue is empty
+	else pops the object that is in the front of the queue
 */
 template <typename Type>
 Type Dynamic_queue_as_array<Type>::dequeue() {
@@ -195,7 +211,7 @@ Type Dynamic_queue_as_array<Type>::dequeue() {
 		tmp = array[ihead];
 		array[ihead] = 0;
 		--entry_count;
-		--ihead;
+		++ihead;
 		if (ihead < 0)
 		{
 			ihead = array_capacity - 1;
@@ -221,7 +237,7 @@ Type Dynamic_queue_as_array<Type>::dequeue() {
 
 	}
 }
-
+//deleting every element in the array. 
 template <typename Type>
 void Dynamic_queue_as_array<Type>::clear() {
 	entry_count = 0;

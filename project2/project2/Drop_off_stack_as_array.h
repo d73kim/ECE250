@@ -20,7 +20,7 @@ private:
 
 	int itop;
 	int ibottom;
-	int entry_count; // stack_size?
+	int entry_count; 
 	int array_capacity;
 	Type *array;
 
@@ -46,21 +46,25 @@ public:
 	friend std::ostream &operator << (std::ostream &, Drop_off_stack_as_array<T> const &);
 };
 
-
+/*
+	Constructor. itop points to the -1 index of the array and ibottom points 0 index of the array.
+*/
 template <typename Type>
 Drop_off_stack_as_array<Type>::Drop_off_stack_as_array(int n)
-// Constructor
 :itop(-1),
 ibottom(0),
 entry_count(0),
 array_capacity(std::max(1, n)),
 array(new Type[array_capacity])
 {
-	// it should be in a order
+	
 
 }
 
-// Copy Contructor. come back to this
+/*
+	Copy Constructor. looping through the stack array and copying each element 
+	index by index.
+*/
 template <typename Type>
 Drop_off_stack_as_array<Type>::Drop_off_stack_as_array(Drop_off_stack_as_array<Type> const &stack) :
 itop(stack.itop),
@@ -68,18 +72,14 @@ ibottom(stack.ibottom),
 entry_count(stack.entry_count),
 array_capacity(stack.array_capacity),
 array(new Type[array_capacity]) {
-	// The above initializations copy the values of the appropriate
-	// member variables and allocate memory for the data structure; 
-	// however, you must still copy the stored objects.
 
-	// Enter your implementation here.
 	for (int i = 0; i < entry_count; i++)
 	{
 		array[itop-i] = stack.array[itop-i];
 	}
 }
 
-// Destructor
+// Destructor.
 template <typename Type>
 Drop_off_stack_as_array<Type>::~Drop_off_stack_as_array() {
 	delete[] array;
@@ -88,6 +88,9 @@ Drop_off_stack_as_array<Type>::~Drop_off_stack_as_array() {
 	ibottom = 0;
 }
 
+/*
+	returns the number of element in the array
+*/
 template <typename Type>
 int Drop_off_stack_as_array<Type>::size() const {
 	return entry_count;
@@ -138,13 +141,15 @@ Drop_off_stack_as_array<Type> &Drop_off_stack_as_array<Type>::operator = (Drop_o
 	return *this;
 }
 
+/*
+	push method. two scenarios to consider, when the array is full and when it is not full
+	when it is full, itop goes back to the index 0 in the array and object gets inserted.
+	using modular for ibottom to point to the new ibottom position.
+	When it is not full, increment itop first so that it points to the next empty entry
+	and the object gets inserted there.
+*/
 template <typename Type>
 void Drop_off_stack_as_array<Type>::push(Type const &obj) {
-	/*
-	note: pushing an object onto the stack can only be
-	performed if the array is not full
-	*/
-	//full
 	if (entry_count == array_capacity)
 	{
 		itop = ibottom;
@@ -159,11 +164,17 @@ void Drop_off_stack_as_array<Type>::push(Type const &obj) {
 		++entry_count;
 
 	}
+	// for testing
 	//std::cout << *this;
 }
 
+/*
+	pop method. throws underflow if the array is empty
+
+*/
 template <typename Type>
 Type Drop_off_stack_as_array<Type>::pop() {
+	// for testing
 	//std::cout << *this;
 	Type tmp;
 	
