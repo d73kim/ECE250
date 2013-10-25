@@ -12,6 +12,8 @@
 *****************************************/
 
 #include "Exception.h"
+#include <iostream>
+#include <algorithm>
 
 template <typename Type>
 class Drop_off_stack_as_array {
