@@ -66,7 +66,7 @@ array(new Type[array_capacity])
 	index by index.
 */
 template <typename Type>
-Drop_off_stack_as_array<Type>::Drop_off_stack_as_array(Drop_off_stack_as_array<Type> const &stack) :
+Drop_off_stack_as_array<Type>::Drop_off_stack_as_array(Drop_off_stack_as_array<Type> const &stack):
 itop(stack.itop),
 ibottom(stack.ibottom),
 entry_count(stack.entry_count),
