@@ -23,6 +23,8 @@ private:
 	int ihead;
 	int itail; 
 	int entry_count;
+	// this is test comment
+	
 
 
 public:
