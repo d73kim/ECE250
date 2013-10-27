@@ -1,0 +1,16 @@
+new
+dequeue!
+empty 1
+size 0
+enqueue 56
+enqueue 78
+enqueue 90
+dequeue 56
+enqueue 123
+dequeue 78
+dequeue 90
+head 123
+dequeue 123
+delete
+summary
+exit

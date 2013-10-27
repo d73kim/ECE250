@@ -49,7 +49,8 @@ public:
 };
 
 /*
-	Constructor. itop points to the -1 index of the array and ibottom points 0 index of the array.
+	Constructor. itop points to the -1 index of the array(before the first index in the array) and ibottom points 0 index of the array
+	which is the first index in the array.
 */
 template <typename Type>
 Drop_off_stack_as_array<Type>::Drop_off_stack_as_array(int n)
@@ -111,8 +112,7 @@ bool Drop_off_stack_as_array<Type>::empty() const {
 	}
 }
 
-// throw underflow() if the stack is empty otherwise return
-// the object that is at the top of the stack
+// throw underflow() if the stack is empty otherwise return the object that is at the top of the stack
 template <typename  Type>
 Type Drop_off_stack_as_array<Type>::top() const {
 	if (empty())
@@ -144,7 +144,7 @@ Drop_off_stack_as_array<Type> &Drop_off_stack_as_array<Type>::operator = (Drop_o
 }
 
 /*
-	push method. two scenarios to consider, when the array is full and when it is not full
+	push method. two scenarios to consider, when the array is full and when it is not full.
 	when it is full, itop goes back to the index 0 in the array and object gets inserted.
 	using modular for ibottom to point to the new ibottom position.
 	When it is not full, increment itop first so that it points to the next empty entry
@@ -172,7 +172,7 @@ void Drop_off_stack_as_array<Type>::push(Type const &obj) {
 
 /*
 	pop method. throws underflow if the array is empty
-
+	when it is not full, it pops the object that is in the itop index
 */
 template <typename Type>
 Type Drop_off_stack_as_array<Type>::pop() {
@@ -200,6 +200,7 @@ Type Drop_off_stack_as_array<Type>::pop() {
 
 }
 
+//clear method. deleting everything in the array.
 template <typename Type>
 void Drop_off_stack_as_array<Type>::clear() {
 	entry_count = 0;
