@@ -98,7 +98,7 @@ Dynamic_queue_as_array<Type>::~Dynamic_queue_as_array() {
 }
 
 /*
-	returing the current number of element in the array
+	returning the current number of element in the array
 */
 
 template <typename Type>
@@ -179,6 +179,7 @@ void Dynamic_queue_as_array<Type>::enqueue(Type const &obj) {
 			doubleArray[i] = array[i];
 		}
 
+		//pointer
 		Type *tempArray = array;
 		//delete [] tempArray;
 

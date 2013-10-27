@@ -1,0 +1,39 @@
+new: 1
+capacity 1
+size 0
+empty 1
+dequeue!
+head!
+enqueue 1
+cout
+size 1
+enqueue 2
+capacity 2
+cout
+size 2
+head 1
+empty 0
+enqueue 3
+enqueue 4
+capacity 4
+cout
+size 4
+enqueue 5
+enqueue 6
+enqueue 7
+enqueue 8
+capacity 8
+cout
+size 8
+dequeue 1
+dequeue 2
+dequeue 3
+dequeue 4
+dequeue 5
+dequeue 6
+size 2
+capacity 4
+delete 
+summary
+details
+exit
