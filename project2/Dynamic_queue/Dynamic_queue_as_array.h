@@ -180,11 +180,12 @@ void Dynamic_queue_as_array<Type>::enqueue(Type const &obj) {
 		}
 
 		//pointer
-		Type *tempArray = array;
+		//Type *tempArray = array;
 		//delete [] tempArray;
 
 		array = doubleArray;
 
+        
 		array_capacity = array_capacity * 2;
 		array[itail] = obj;
 		++entry_count;
