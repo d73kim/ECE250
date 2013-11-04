@@ -47,6 +47,12 @@ count( 0 ) {
 	// Only initializes member variables
 }
 
+//destructor
+template <typename Type>
+Lazy_deletion_tree<Type>::~Lazy_deletion_tree(){
+	clear();
+}
+
 
 //accessors
 //empty method
@@ -133,22 +139,8 @@ void Lazy_deletion_tree<Type>::breadth_first_traversal() const {
 
 template<typename Type>
 bool Lazy_deletion_tree<Type>::insert(Type const & ){
-	if (obj == element)
-	{
-		if(erased)
-		{
-			erased = true;
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	else
-	{
-		newNode = new Lazy_deletion_node<Type>(obj);
-	}
+	root_node -> insert();
+
 
 }
 
@@ -197,9 +189,12 @@ void Lazy_deletion_tree<Type>::clear() {
 
 template<typename Type>
 void Lazy_deletion_tree<Type>::clean() {
-
+	if (erased)
+	{
+		root_node -> clean();
+		root_node = nullptr;
+	}
 }
-
 
 // Your implementation here
 
