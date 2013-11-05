@@ -104,7 +104,9 @@ bool Lazy_deletion_tree<Type>::member( Type const &obj ) const{
 }
 
 /*
-	comments
+	front() method. I create a pair called result using standard library function. 
+	I check if there is a node that can be replaced in the right subtree. if there isn't,
+	throw underflow(). Then return that result
 */
 template<typename Type>
 Type Lazy_deletion_tree<Type>::front() const{
@@ -122,7 +124,9 @@ Type Lazy_deletion_tree<Type>::front() const{
 }
 
 /*
-	comments
+	back() method. I create a pair called result using standard library function. 
+	I check if there is a node that can be replaced in the left subtree. if there isn't,
+	throw underflow(). Then return that result
 */
 template<typename Type>
 Type Lazy_deletion_tree<Type>::back() const{
@@ -137,13 +141,17 @@ Type Lazy_deletion_tree<Type>::back() const{
 		return result.first;
 	}
 
-
-
 }
 
-
 /*
-	comments
+	breadth first traversal() method implemented using standard library function queue.
+	If the root node is nullptr, we return. Else, we create a queue named queue. We are going
+	to first push the root node to the queue. We go in a loop while the queue is not empty, 
+	we are going to create a pointer that points to the head of the queue. Since we enqueued
+	a root node to the queue, now we need to pop it in order to begin the BFT. Then we cheack if
+	the left subtree childred are there, and if they are, then we push them into the queue. Same 
+	thing for the right subtree as well. If an object is marked as erased, an "x " is printed 
+	immediately following the object, otherwise only a single space " " is printed.
 */
 template <typename Type>
 void Lazy_deletion_tree<Type>::breadth_first_traversal() const {
@@ -152,7 +160,7 @@ void Lazy_deletion_tree<Type>::breadth_first_traversal() const {
 	}
 
 	// Read up on the STL queue at http://www.cplusplus.com/reference/queue/queue/
-	// create a queue?
+	// create a queue
 	std::queue< Lazy_deletion_node<Type> *> queue;
 
 	queue.push( root_node );
@@ -187,7 +195,10 @@ void Lazy_deletion_tree<Type>::breadth_first_traversal() const {
 //mutators
 
 /*
-	insert() method. 
+	insert() method. we first check to see if that the tree is not empty and root node is
+	nullptr. Then we go ahead and make a new node and insert object. increment the count, return true.
+	Otherwise we have a boolean variable flag and it's initially false. if we insert the object, the flag
+	becomes true. We increment and return true only if the flag is true otherwise we return false. 
 */
 template<typename Type>
 bool Lazy_deletion_tree<Type>::insert(Type const & obj){
@@ -229,7 +240,6 @@ bool Lazy_deletion_tree<Type>::erase(Type const & obj){
 	if (empty())
 	{
 		return false;
-		
 	}
 	else
 	{
@@ -241,7 +251,7 @@ bool Lazy_deletion_tree<Type>::erase(Type const & obj){
 }
 
 /*
-	clear() method. Deleting all nodes in the tree.
+	clear() method. Deleting all nodes in the tree. Making the root node to be nullptr.
 	sets the count to be zero.
 */
 template<typename Type>

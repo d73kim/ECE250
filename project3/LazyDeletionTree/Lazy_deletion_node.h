@@ -86,8 +86,8 @@ Type Lazy_deletion_node<Type>::retrieve() const{
 /*
 	height() method. Returns the height of the subtree with
 	this node as the root. Here, I am using the standard library funtion
-	std::max to find out the maximum height from the root node and adding
-	one once I find out the height.
+	std::max to find out the maximum height from the root node. Adding
+	1 once I find out the height.
 */
 template<typename Type>
 int Lazy_deletion_node<Type>::height() const{
@@ -294,7 +294,8 @@ bool Lazy_deletion_node<Type>::erase(Type const &obj){
 }
 /*
 	clear() method. if this is nullptr, return. Else, I need to
-	delete on both subtrees and delete this node.
+	delete on both subtrees by recursively calling clear() method
+	and delete root node.
 */
 template<typename Type>
 void Lazy_deletion_node<Type>::clear(){
@@ -307,7 +308,20 @@ void Lazy_deletion_node<Type>::clear(){
 	right_tree ->clear();
 	delete this;
 }
+
 /*
+	clean() method. returns if this is nullptr. Else we check if there is a node 
+	thats tagged as erased and if there is, we create pair using standard library function
+	and call it result. result is now pointing to the right subtree.
+	We check right subtree to see if there is a node that contains a proper value 
+	which can be replace with the previously marked as erased node. 
+	If there is, we replace the previously marked as 
+	erased node with it. That node is no longer marked as erased anymore. 
+	Finally mark the node we find with erased. If the right subtree is null, 
+	we create another pair thats pointing to the left subtree and do the same thing
+	we did above. We call clean on both subtrees. IF the node is still marked as erased,
+	we set the pointer to the nullptr and delete.
+	
 */
 template<typename Type>
 void Lazy_deletion_node<Type>::clean(Lazy_deletion_node *&ptr_to_this){
@@ -347,13 +361,6 @@ void Lazy_deletion_node<Type>::clean(Lazy_deletion_node *&ptr_to_this){
 		delete this;
 	}
 }
-
-/*
-	DIFFERENCE BETWEEN CLEAN CLEAR
-
-*/
-
-
 
 
 // Your implementation here

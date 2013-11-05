@@ -1,0 +1,358 @@
+// First TEST
+// Inserted tree is the tree on the homepage
+// Erased elements are like on the first picture
+new
+empty 1
+front!
+back!
+height -1
+insert 22 1
+insert 12 1
+insert 32 1
+insert 6 1
+size 4
+height 2
+front 6
+back 32
+empty 0
+member 6 1
+member 10 0
+insert 16 1
+insert 24 1
+insert 38 1
+insert 4 1
+insert 8 1
+insert 14 1
+insert 20 1
+insert 28 1
+insert 34 1
+traverse
+insert 34 0
+traverse
+insert 42 1
+insert 2 1
+insert 10 1
+insert 18 1
+insert 26 1
+insert 30 1
+insert 36 1
+insert 40 1
+traverse
+erase  8 1
+erase 24 1
+erase 34 1
+erase 42 1
+erase 40 1
+traverse
+clean
+traverse
+delete
+summary
+
+
+// Second TEST
+// Inserted tree is the tree on the homepage
+// Erased elements are like on the second picture
+new
+empty 1
+front!
+back!
+height -1
+insert 22 1
+insert 12 1
+insert 32 1
+insert 6 1
+size 4
+height 2
+front 6
+back 32
+empty 0
+member 6 1
+member 10 0
+insert 16 1
+insert 24 1
+insert 38 1
+insert 4 1
+insert 8 1
+insert 14 1
+insert 28 1
+insert 20 1
+insert 34 1
+insert 34 0
+insert 42 1
+insert 2 1
+insert 10 1
+insert 18 1
+insert 26 1
+insert 30 1
+insert 36 1
+insert 40 1
+traverse
+erase  12 1
+erase 16 1
+erase 14 1
+erase 20 1
+erase 18 1
+erase 34 1
+traverse
+clean
+traverse
+delete
+summary
+
+
+
+// Third TEST
+// Inserted tree is the tree on the homepage
+// Erased elements are like on the third picture
+new
+empty 1
+front!
+back!
+height -1
+insert 22 1
+insert 12 1
+insert 32 1
+insert 6 1
+size 4
+height 2
+front 6
+back 32
+empty 0
+member 6 1
+member 10 0
+insert 16 1
+insert 24 1
+insert 38 1
+insert 4 1
+insert 8 1
+insert 14 1
+insert 28 1
+insert 20 1
+insert 34 1
+insert 34 0
+insert 42 1
+insert 2 1
+insert 10 1
+insert 18 1
+insert 26 1
+insert 30 1
+insert 36 1
+insert 40 1
+traverse
+erase  22 1
+erase 32 1
+erase 4 1
+erase 8 1
+erase 14 1
+erase 20 1
+erase 38 1
+erase 34 1
+erase 26 1
+erase 30 1
+erase 36 1
+erase 40 1
+traverse
+clean
+traverse
+delete
+summary
+
+
+// Fourth TEST
+// Inserted tree is the tree on the homepage
+// All elements are erased
+new
+empty 1
+front!
+back!
+height -1
+insert 22 1
+insert 12 1
+insert 32 1
+insert 6 1
+size 4
+height 2
+front 6
+back 32
+empty 0
+member 6 1
+member 10 0
+insert 16 1
+insert 24 1
+insert 38 1
+insert 4 1
+insert 8 1
+insert 14 1
+insert 28 1
+insert 20 1
+insert 34 1
+insert 34 0
+insert 42 1
+insert 2 1
+insert 10 1
+insert 18 1
+insert 26 1
+insert 30 1
+insert 36 1
+insert 40 1
+traverse
+erase  22 1
+erase 32 1
+erase 4 1
+erase 8 1
+erase 14 1
+erase 20 1
+erase 38 1
+erase 34 1
+erase 26 1
+erase 30 1
+erase 36 1
+erase 40 1
+erase 12 1
+erase 6 1
+erase 16 1
+erase 2 1
+erase 10 1
+erase 18 1
+erase 24 1
+erase 28 1
+erase 42 1
+traverse
+clean
+traverse
+delete
+summary
+
+
+// Fifth TEST
+// Inserted tree is the tree on the homepage
+// All elements are erased except 42
+new
+empty 1
+front!
+back!
+height -1
+insert 22 1
+insert 12 1
+insert 32 1
+insert 6 1
+size 4
+height 2
+front 6
+back 32
+empty 0
+member 6 1
+member 10 0
+insert 16 1
+insert 24 1
+insert 38 1
+insert 4 1
+insert 8 1
+insert 14 1
+insert 28 1
+insert 20 1
+insert 34 1
+insert 34 0
+insert 42 1
+insert 2 1
+insert 10 1
+insert 18 1
+insert 26 1
+insert 30 1
+insert 36 1
+insert 40 1
+traverse
+erase  22 1
+erase 32 1
+erase 4 1
+erase 8 1
+erase 14 1
+erase 20 1
+erase 38 1
+erase 34 1
+erase 26 1
+erase 30 1
+erase 36 1
+erase 40 1
+erase 12 1
+erase 6 1
+erase 16 1
+erase 2 1
+erase 10 1
+erase 18 1
+erase 24 1
+erase 28 1
+traverse
+clean
+traverse
+front 42
+back 42
+delete
+summary
+
+
+// Sixth TEST
+// Inserted tree is the tree on the homepage
+// All elements are erased except 42 and 22
+new
+empty 1
+front!
+back!
+height -1
+insert 22 1
+insert 12 1
+insert 32 1
+insert 6 1
+size 4
+height 2
+front 6
+back 32
+empty 0
+member 6 1
+member 10 0
+insert 16 1
+insert 24 1
+insert 38 1
+insert 4 1
+insert 8 1
+insert 14 1
+insert 28 1
+insert 20 1
+insert 34 1
+insert 34 0
+insert 42 1
+insert 2 1
+insert 10 1
+insert 18 1
+insert 26 1
+insert 30 1
+insert 36 1
+insert 40 1
+traverse
+erase 32 1
+erase 4 1
+erase 8 1
+erase 14 1
+erase 20 1
+erase 38 1
+erase 34 1
+erase 26 1
+erase 30 1
+erase 36 1
+erase 40 1
+erase 12 1
+erase 6 1
+erase 16 1
+erase 2 1
+erase 10 1
+erase 18 1
+erase 24 1
+erase 28 1
+traverse
+clean
+traverse
+front 22
+back 42
+delete
+summary
