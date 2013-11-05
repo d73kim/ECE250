@@ -1,0 +1,60 @@
+new
+empty 1
+size 0
+front!
+back!
+height -1
+member  5 0
+member 10.5 0
+member 15 0
+insert 10.5 1
+empty 0
+size 1
+front 10.5
+back 10.5
+height 0
+member  5 0
+member 10.5 1
+member 15 0
+insert 10.5 0
+insert  5 1
+empty 0
+size 2
+front 5
+back 10.5
+height 1
+member  5 1
+member 10.5 1
+member 15 0
+insert 15 1
+empty 0
+size 3
+front 5
+back 15
+height 1
+member  5 1
+member 10.5 1
+member 15 1
+traverse
+insert 7 1
+insert 6 1
+size 5
+height 3
+traverse
+erase 5 1
+erase 5 0
+front 6
+erase 7 1
+front 6
+traverse
+erase 6 1
+front 10.5
+erase 10.5 1
+front 15
+back 15
+height 3
+traverse
+erase 6 0
+delete
+summary
+exit
