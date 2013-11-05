@@ -106,7 +106,8 @@ bool Lazy_deletion_tree<Type>::member( Type const &obj ) const{
 /*
 	front() method. I create a pair called result using standard library function. 
 	I check if there is a node that can be replaced in the right subtree. if there isn't,
-	throw underflow(). Then return that result
+	throw underflow(). Otherwise if we have the node that contains proper value, we 
+	return that result
 */
 template<typename Type>
 Type Lazy_deletion_tree<Type>::front() const{
@@ -126,7 +127,8 @@ Type Lazy_deletion_tree<Type>::front() const{
 /*
 	back() method. I create a pair called result using standard library function. 
 	I check if there is a node that can be replaced in the left subtree. if there isn't,
-	throw underflow(). Then return that result
+	throw underflow(). Otherwise if we have the node that contains proper value, we 
+	return that result
 */
 template<typename Type>
 Type Lazy_deletion_tree<Type>::back() const{
