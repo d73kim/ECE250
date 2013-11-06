@@ -2,7 +2,7 @@
 #define LAZY_DELETION_NODE_H
 
 /*****************************************
- * UW User ID:  uwuserid
+ * UW User ID:  d73kim
  * Submitted for ECE 250
  * Semester of Submission:  (Winter|Spring|Fall) 20NN
  *
@@ -107,11 +107,14 @@ int Lazy_deletion_node<Type>::height() const{
 
 /*
 	member() method. If this is nullptr, return false. Otherwise 
-	We have a couple of conditions to go through. First to see if the 
+	We have a few conditions to go through. First to see if the 
 	argument is less then the object, we go down the left subtree
 	and return true. Second condition is if the argument is greater than
-	the element, we go down the right subtree and return true.
+	the element, we go down the right subtree and return true. If argument
+	is equal to the element and if it is marked as erased, we return false 
+	else we return true.
 */
+	
 template<typename Type>
 bool Lazy_deletion_node<Type>::member( Type const &obj ) const{
 	if (this == nullptr)
@@ -128,11 +131,17 @@ bool Lazy_deletion_node<Type>::member( Type const &obj ) const{
 		{
 			return right()->member(obj);
 		}
-		else
+		else if (obj == element)
 		{
-			return true;
+			if (erased)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
 		}
-
 	}
 }	
 
@@ -206,6 +215,7 @@ std::pair<Type, bool> Lazy_deletion_node<Type>::back() const {
 	obj there. Then we return true. If the node thats pointed by
 	left_tree is not nullptr, we just insert. 
 */
+
 template<typename Type>
 bool Lazy_deletion_node<Type>::insert(Type const &obj){
 	if (obj == element)
@@ -215,10 +225,7 @@ bool Lazy_deletion_node<Type>::insert(Type const &obj){
 			erased = false;
 			return true;
 		}
-		else
-		{
-			return false;		
-		}
+		return false;
 	}
 	else
 	{
@@ -230,9 +237,8 @@ bool Lazy_deletion_node<Type>::insert(Type const &obj){
 				return true;
 			}
 
-				return left()->insert(obj);
+			return left()->insert(obj);
 		}
-
 
 		else if(obj > element)
 		{
@@ -242,10 +248,11 @@ bool Lazy_deletion_node<Type>::insert(Type const &obj){
 				return true;
 			}
 
-				return right() -> insert(obj);
+			return right() -> insert(obj);
 		}
 	}
 }
+
 
 /*
 	erase() method. Algorithm of this method is similar with
@@ -290,7 +297,6 @@ bool Lazy_deletion_node<Type>::erase(Type const &obj){
 		}
 
 	}
-
 }
 /*
 	clear() method. if this is nullptr, return. Else, I need to

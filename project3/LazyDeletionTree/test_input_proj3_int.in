@@ -1,0 +1,166 @@
+// Begin of Testfile
+// creat tree, check empty and underflow()
+new
+empty 1
+size 0
+height -1
+front!
+back!
+traverse
+
+// insert root, check front, back, member
+insert 15 1
+front 15
+back 15
+member 15 1
+height 0
+size 1
+
+// delete root, check empty, ...
+erase 15 1
+front!
+back!
+member 15 0
+height 0
+size 0
+traverse
+
+// insert same root again, insert left and right subtrees
+// check front, back, height and size
+insert 15 1
+insert 7 1
+insert 18 1
+front 7
+back 18
+size 3
+height 1
+traverse
+
+// erase root and check front, back, height and size
+erase 15 1
+front 7
+back 18
+size 2
+height 1
+traverse
+
+
+// insert elements into left and right subtrees and insert root again
+// erase the smalles and biggest element and check front and back
+// then clear and clean tree (only check if works), finally delete tree
+// check height, front, back and size
+insert 9 1
+insert 16 1
+size 4
+insert 15 1
+traverse
+front 7
+back 18
+insert 5 1
+insert 20 1
+front 5 
+back 20
+size 7
+erase 5 1
+erase 20 1
+front 7
+back 18
+size 5
+traverse
+clean
+traverse
+// check front and back again
+front 7
+back 18
+height 2
+clear
+traverse
+// now should be only tree object left
+summary 
+delete
+// now should be no objects left
+summary
+
+// creat new tree, erase root and check clean by moving smallest element from right subtree as new root
+// finally, delete all objects
+new
+insert 20 1
+insert 29 1
+insert 31 1
+insert 25 1
+insert 27 1
+height 3
+size 5
+front 20
+back 31
+erase 20 1
+size 4
+traverse
+clean
+height 2
+front 25
+traverse
+delete
+summary
+
+// creat new tree, erase root and check clean by moving biggest element from left subtree as new root
+// finally, delete all objects
+new
+insert 20 1
+insert 10 1
+insert 17 1
+insert 3 1
+insert 15 1
+height 3
+size 5
+front 3
+back 20
+erase 20 1
+size 4
+traverse
+clean
+height 2
+back 17
+traverse 
+delete
+summary
+
+// insert some elements ( call insert again on inserted elements)
+// erase all elements ( call erase again on erased elements)
+// and call clean
+new
+insert 10 1
+insert 15 1
+insert 12 1
+insert 20 1
+insert 19 1
+insert 25 1
+insert 9 1
+insert 6 1
+insert 5 1
+insert 8 1
+insert 25 0
+insert 10 0
+insert 5 0
+erase 10 1
+erase 25 1
+erase 19 1
+erase 20 1
+erase 12 1
+erase 15 1
+erase 8 1
+erase 6 1
+erase 9 1
+erase 5 1
+erase 9 0
+erase 15 0
+erase 10 0
+traverse
+clean 
+traverse
+delete
+summary
+
+// End of Testfile
+
+exit

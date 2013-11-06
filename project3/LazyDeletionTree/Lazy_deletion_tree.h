@@ -5,7 +5,7 @@
 #include "Lazy_deletion_node.h"
 
 /*****************************************
- * UW User ID:  uwuserid
+ * UW User ID:  d73kim
  * Submitted for ECE 250
  * Semester of Submission:  (Winter|Spring|Fall) 20NN
  *
@@ -197,24 +197,23 @@ void Lazy_deletion_tree<Type>::breadth_first_traversal() const {
 //mutators
 
 /*
-	insert() method. we first check to see if that the tree is not empty and root node is
-	nullptr. Then we go ahead and make a new node and insert object. increment the count, return true.
+	insert() method. we first check to see if the root node is nullptr. If the root node is nullptr
+	this means that the tree is empty. Then we go ahead and make a new node and insert object. increment the count, return true.
 	Otherwise we have a boolean variable flag and it's initially false. if we insert the object, the flag
 	becomes true. We increment and return true only if the flag is true otherwise we return false. 
 */
+	
 template<typename Type>
 bool Lazy_deletion_tree<Type>::insert(Type const & obj){
 	bool flag = false;
 
-	if (empty())
+	if (root_node == nullptr)
 	{
-		if (root_node == nullptr)
-		{
-			root_node = new Lazy_deletion_node<Type>(obj);
-			count++;
-			return true;
-		}
+		root_node = new Lazy_deletion_node<Type>(obj);
+		count++;
+		return true;
 	}
+	
 	else
 	{
 		flag = root_node -> insert(obj);
@@ -228,8 +227,6 @@ bool Lazy_deletion_tree<Type>::insert(Type const & obj){
 			return false;
 		}
 	}
-
-
 }
 
 /*
@@ -248,8 +245,6 @@ bool Lazy_deletion_tree<Type>::erase(Type const & obj){
 		count--;
 		return root_node-> erase(obj);
 	}
-
-
 }
 
 /*
