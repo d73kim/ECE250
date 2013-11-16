@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>064C67DE-91EA-4882-AE3D-2EAAAD5D5134</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project4</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C79B551C-A045-4A51-885E-D85B4EEB4263</key>
+		<string>https://github.com/d73kim/ECE250</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>project4/project4/project4.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C79B551C-A045-4A51-885E-D85B4EEB4263</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/d73kim/ECE250</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C79B551C-A045-4A51-885E-D85B4EEB4263</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C79B551C-A045-4A51-885E-D85B4EEB4263</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ECE250</string>
+		</dict>
+	</array>
+</dict>
+</plist>
