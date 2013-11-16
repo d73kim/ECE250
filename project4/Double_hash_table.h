@@ -82,13 +82,13 @@ int Double_hash_table<Type>::size() const{
 // capacity() method
 template<typename Type>
 int Double_hash_table<Type>::capacity() const{
-
+    return array_size;
 }
 
 // load_factor() method
 template<typename Type>
 double Double_hash_table<Type>::load_factor() const{
-
+    return static_cast<double>(count)/array_size;
 }
 
 // empty() method
@@ -107,11 +107,7 @@ bool Double_hash_table<Type>::empty() const{
 // member() method
 template<typename Type>
 bool Double_hash_table<Type>::member( Type const &) const{
-	for (int i = 0; i < count; ++i)
-	{
-		
-		occupied[i]
-	}
+
 }
 
 // bin() method
