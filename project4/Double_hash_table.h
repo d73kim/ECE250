@@ -22,7 +22,7 @@ private:
     int count;
     int power;
     int array_size;
-    int mask; //ASK what mask is??
+    int mask; 
     Type *array;
     state *occupied;
     
@@ -122,8 +122,8 @@ bool Double_hash_table<Type>::empty() const{
 
 /* 
     member() method. This method is to check if the object is currently
-    stored in the hash table. If the obj is stored in the hash table, it returns true
-    else, return false. 
+    stored in the hash table. If the obj is stored in the hash table and marked as
+    OCCUPIED, it returns true else, return false. 
 */
 template<typename Type>
 bool Double_hash_table<Type>::member( Type const &obj) const{
@@ -134,7 +134,7 @@ bool Double_hash_table<Type>::member( Type const &obj) const{
     {
         int hashValue = (hash1 + (i*hash2))%array_size;
         
-        if (array[hashValue] == obj)
+        if (array[hashValue] == obj && occupied[hashValue] == OCCUPIED)
         {
             return true;
         }
@@ -203,9 +203,12 @@ int Double_hash_table<Type>::h2( Type const &obj ) const {
 // Mutators
 /*
     insert() method. If the array is already full, than we throw overflow().
-    If the obj we want to insert is already there, we do nothing and return.
-    We calculate h1 and h2 above and save it into the hash1 and hash2 respectively.
+    We call member() method to check if the obj we want to insert is already there, 
+    and if it is, we do nothing and return.
+    We calculate hash1 and hash2 using h1() and h2() above. 
     We calculate hashValue using h1 and h2 to find the index the obj is supposed to be inserted.
+    If obj we want to insert is already there and marked as DELETED, we mark it as OCCUPIED, increment the count and return true.
+    If occupied array is not marked as OCCIPIED, we insert the obj, mark it as OCCUPIED, increment count and return.
      
 */
 template<typename Type>
@@ -219,6 +222,7 @@ void Double_hash_table<Type>::insert( Type const &obj ){
     {
         return;
     }
+    
     int hash1 = h1(obj);
     int hash2 = h2(obj);
     
@@ -227,13 +231,10 @@ void Double_hash_table<Type>::insert( Type const &obj ){
         int hashValue = (hash1 + (i*hash2))%array_size;
         //this is for testing
         //std::cout<< obj <<" "<< hashValue << " " << array[hashValue] << " " << occupied[hashValue]<< std::endl;
-        if (array[hashValue] == obj)
+        if (array[hashValue] == obj && occupied[hashValue] == DELETED)
         {
-            if (occupied[hashValue] == DELETED)
-            {
-                occupied[hashValue] = OCCUPIED;
-                count++;
-            }
+            occupied[hashValue] = OCCUPIED;
+            count++;
             return;
         }
         
@@ -244,10 +245,6 @@ void Double_hash_table<Type>::insert( Type const &obj ){
             count++;
             return;
         }
-        else
-        {
-            continue;
-        }
     }
     
     return;
@@ -256,8 +253,8 @@ void Double_hash_table<Type>::insert( Type const &obj ){
 
 /*
     remove() method. Similar logic from insert() method applies. Once we find the proper position(index) but
-    the obj we want to insert is already in there, we basically insert 0 which means the element in that index is going to be null,
-    and mark it as DELETED. We decrement the count and return True. Else we return false.
+    the obj we want to insert is already in there and if it is marked as OCCUPIED, we mark it as DELETED,
+    decrement the count and return True. Else we return false.
 */
 template<typename Type>
 bool Double_hash_table<Type>::remove( Type const &obj ){
@@ -268,9 +265,8 @@ bool Double_hash_table<Type>::remove( Type const &obj ){
     {
         int hashValue = (hash1 + (i*hash2))%array_size;
         
-        if (array[hashValue] == obj)
+        if (array[hashValue] == obj && occupied[hashValue] == OCCUPIED)
         {
-            array[hashValue] = 0; //ask if this should be left the same or set to zero?
             occupied[hashValue] = DELETED; 
             count--;
             return true;
@@ -287,8 +283,7 @@ template<typename Type>
 void Double_hash_table<Type>::clear(){
     for (int i = 0; i < array_size; i++)
     {
-        array[i] = 0;
-        occupied[i] = EMPTY; 
+        occupied[i] = EMPTY;
     }
     
     count = 0;
