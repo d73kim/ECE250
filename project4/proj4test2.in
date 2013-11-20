@@ -1,0 +1,67 @@
+// check new with default value
+// insert() some values into array
+// check empty(), size(), load_factor(), capacity()
+new
+empty 1
+capacity 32
+size 0
+insert 20
+insert 100
+insert 512
+insert 1023
+size 4
+load_factor 0.125
+empty 0
+cout
+// check values, if there exist and in right bin
+// check member() and bin()
+// remove() some values, check size(), load_factor(), member() and bin() again
+member 20 1
+member 3 0
+bin 20 20
+bin 4 100
+bin 31 1023
+bin 0 512
+remove 200 0
+remove 100 1
+remove 100 0
+size 3
+load_factor 0.09375
+remove 20 1
+member 100 0
+member 20 0
+size 2
+cout
+// re-insert values and insert new values, in already used bin
+// check size(), load_factor(), member(), bin()
+insert 100 
+insert 372
+insert 36 
+insert 70
+insert 453
+insert 618
+insert 128
+size 9
+load_factor 0.28125
+member 1023 1
+member 127 0
+member 128 1
+// check all values, using bin()
+bin 0 512
+bin 3 453
+bin 4 100 
+bin 5 36
+bin 6 70
+bin 10 618
+bin 15 128
+bin 20 372
+bin 31 1023
+cout
+// clear array and check size(), empty()
+clear
+size 0
+empty 1
+// delete() array and check memory usage
+delete 
+summary
+exit
