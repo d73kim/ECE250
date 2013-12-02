@@ -113,9 +113,10 @@ array(new bool*[size])
 	for (int i = 0; i < size; i++)
 	{
 		//copying arrays index by index
-		inDegreeArr[i] = copyArray.inDegreeArr[size];
-		outDegreeArr[i] = copyArray.outDegreeArr[size];
-		priorityArr[i] = copyArray.priorityArr[size];
+		inDegreeArr[i] = copyArray.inDegreeArr[i];
+		outDegreeArr[i] = copyArray.outDegreeArr[i];
+		priorityArr[i] = copyArray.priorityArr[i];
+
 		array[i] = new bool[size];
 
 		for (int j = 0; j < size; j++)
@@ -233,7 +234,7 @@ bool Directed_acyclic_graph::connected( int i, int j) const{
 void Directed_acyclic_graph::topological_sort() const{
 	int *tmpArr = new int[size];
 	double *sortArr = new double[size];
-
+	std::cout<<"X";
 	for(int k = 0; k < size; k++)
 	{
 		tmpArr[k] = inDegreeArr[k];
@@ -242,6 +243,7 @@ void Directed_acyclic_graph::topological_sort() const{
 
 	for(int p =0; p < size; p++)
 	{
+
 		for(int k = 0; k < size; k++)
 		{
 			if(tmpArr[k] == 0)
@@ -256,9 +258,9 @@ void Directed_acyclic_graph::topological_sort() const{
 		}
 
 		int index = findMin(sortArr);
-		//std::cout<<"-";
-		std::cout<<index;
-		std::cout<<"-";
+
+		std::cout<<"-"<<index;
+
 
 		tmpArr[index] = -1;	
 
@@ -272,6 +274,8 @@ void Directed_acyclic_graph::topological_sort() const{
 	}
 	delete [] tmpArr;
 	delete [] sortArr;
+	std::cout<<"X";
+
 }
 
 /*
