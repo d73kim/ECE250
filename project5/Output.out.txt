@@ -1,0 +1,123 @@
+Starting Test Run
+1 % Okay
+2 % Okay
+3 % Okay
+4 % Okay
+5 % Okay
+6 % Okay
+7 % Okay
+8 % Okay
+9 % Okay
+10 % Okay
+11 % Okay
+12 % Okay
+13 % Okay
+14 % Okay
+15 % Okay
+16 % Okay
+17 % X2-3-4-5-6-7-9-8-0-1X
+18 % Okay
+19 % Okay
+20 % Okay
+21 % X5-3-2-4-6-7-9-8-0-1X
+22 % Okay
+23 % X2-3-4-5-6-7-9-8-0-1X
+24 % Okay
+25 % Okay
+26 % Okay
+27 % Okay
+28 % Okay
+29 % Okay
+30 % Okay
+31 % Okay
+32 % Okay
+33 % Okay
+34 % Okay
+35 % Okay
+36 % Okay
+37 % Okay
+38 % Okay
+39 % Okay
+40 % X2-3-4-5-6-7-9-8-0-1X
+41 % Okay
+42 % Okay
+43 % Okay
+44 % X5-3-2-4-6-7-9-8-0-1X
+45 % Okay
+46 % X2-3-4-5-6-7-9-8-0-1X
+47 % Okay
+48 % Okay
+49 % Okay
+50 % Memory allocated minus memory deallocated: 0
+51 % SUMMARY OF MEMORY ALLOCATION:
+  Memory allocated:   11780
+  Memory deallocated: 11780
+
+INDIVIDUAL REPORT OF MEMORY ALLOCATION:
+  Address  Using  Deleted  Bytes   
+  0x18e50a0  new       Y        40
+  0x18e50e0  new[]     Y        80
+  0x18e5160  new[]     Y        40
+  0x18e51b0  new[]     Y        80
+  0x18e5230  new[]     Y        10
+  0x18e5270  new[]     Y        10
+  0x18e52b0  new[]     Y        10
+  0x18e52f0  new[]     Y        10
+  0x18e5330  new[]     Y        10
+  0x18e5370  new[]     Y        10
+  0x18e53b0  new[]     Y        10
+  0x18e53f0  new[]     Y        10
+  0x18e5430  new[]     Y        10
+  0x18e5470  new[]     Y        10
+  0x18e54e0  new[]     Y        10
+  0x18e5510  new[]     Y        10
+  0x18e5540  new[]     Y        10
+  0x18e5560  new       Y       512
+  0x18e5570  new[]     Y        10
+  0x18e55a0  new[]     Y        10
+  0x18e55d0  new[]     Y        10
+  0x18e5600  new[]     Y        10
+  0x18e5620  new       Y       512
+  0x18e5630  new       Y       512
+  0x18e5770  new       Y        64
+  0x18e5790  new[]     Y        10
+  0x18e57b0  new       Y        64
+  0x18e57c0  new       Y        64
+  0x18e57d0  new[]     Y        40
+  0x18e5810  new       Y        64
+  0x18e5830  new       Y        64
+  0x18e5860  new       Y       512
+  0x18e5880  new       Y        64
+  0x18e58d0  new       Y        64
+  0x18e5920  new       Y       512
+  0x18e5990  new       Y        40
+  0x18e59d0  new[]     Y        80
+  0x18e5a50  new[]     Y        80
+  0x18e5ac0  new       Y        57
+  0x18e5ad0  new[]     Y        10
+  0x18e5b10  new[]     Y        10
+  0x18e5b30  new       Y       512
+  0x18e5b50  new[]     Y        10
+  0x18e5b90  new[]     Y        10
+  0x18e5bd0  new[]     Y        10
+  0x18e5c10  new[]     Y        10
+  0x18e5c50  new[]     Y        10
+  0x18e5c90  new[]     Y        10
+  0x18e5cd0  new[]     Y        10
+  0x18e5d10  new[]     Y        80
+  0x18e5d90  new[]     Y        40
+  0x18e5de0  new[]     Y        80
+  0x18e5e60  new[]     Y        10
+  0x18e5ea0  new[]     Y        10
+  0x18e5ee0  new[]     Y        10
+  0x18e5f20  new[]     Y        10
+  0x18e5f60  new[]     Y        10
+  0x18e5fa0  new[]     Y        10
+  0x18e5fe0  new[]     Y        10
+  0x18e6020  new[]     Y        10
+  0x18e6060  new[]     Y        10
+  0x18e60a0  new[]     Y        10
+  0x18e62e0  new       Y       512
+  0x18e64f0  new       Y       512
+52 % Exiting...
+Finishing Test Run

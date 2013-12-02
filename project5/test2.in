@@ -1,0 +1,51 @@
+new
+insert 5 9 1
+insert 5 7 1
+insert 9 8 1
+insert 7 8 1
+insert 7 9 1
+insert 8 0 1
+insert 0 1 1
+in 9 2
+in 5 0
+in 0 1
+out 9 1
+out 1 0
+adjacent 7 9 1
+adjacent 7 5 0
+connected 5 1 1
+sort
+set 9 7 0
+set 5 1.5 1
+set 2 3.5 1
+sort
+reset
+sort
+assign
+insert 5 9 0
+insert 5 7 0
+insert 9 8 0
+insert 7 8 0
+insert 7 9 0
+insert 8 0 0
+insert 0 1 0
+in 9 2
+in 5 0
+in 0 1
+out 7 2
+out 1 0
+adjacent 7 9 1
+adjacent 7 5 0
+connected 5 1 1
+sort
+set 9 7 0
+set 5 1.5 1
+set 2 3.5 1
+sort
+reset
+sort
+delete
+exit
+delete
+summary
+details

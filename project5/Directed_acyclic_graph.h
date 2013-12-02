@@ -77,29 +77,26 @@ array(new bool*[size]){
 		array[i] = new bool[size]; //making it 2-dimentional array
 		inDegreeArr[i] = 0;	//setting all the indegree to 0
 		outDegreeArr[i] = 0; //setting all the outdegree to 0
+		priorityArr[i] = i; //sets the priority respect to the index. For example, vertex 1 would be the first priority
 	}
 }
 
 
 /*
-	Destructor. Sets the size and edge count to 0. Deleting all the arrays.
+	Destructor. Sets the edge count to 0. Deleting all the arrays.
 */
 Directed_acyclic_graph::~Directed_acyclic_graph(){
-	size = 0;
 	countEdge = 0;
 	delete[] inDegreeArr;
 	delete[] outDegreeArr;
 	delete[] priorityArr;
 
-	for (int i = 0; i < size; ++i)
+	for (int k = 0; k < size; k++)
 	{
-		delete array[i];
+		delete [] array[k];
 	}
 
 	delete[] array;
-	//array = nullptr;
-	
-
 }
 
 /*
@@ -191,15 +188,13 @@ bool Directed_acyclic_graph::adjacent( int i, int j) const{
 }
 
 /*
-	connected() method. I created a queue and push i into the queue.
+	connected() method. I created a queue and push the vertex i into the queue.
 	while my queue is not empty, I create a temporary integer variable(tmp) and 
 	tmp is equal to the first element in queue. Then I pop queue and chech to see if it is 
 	equal to j, then i return true. This means i = j, just one vertex. 
 	If i is not equal to j, I traverse my 2 dimensional array to check if they are true which means they are connected.
 */
 bool Directed_acyclic_graph::connected( int i, int j) const{
-
-
 	std::queue<int>queue;
 	queue.push(i);
 	while(!queue.empty())
@@ -226,7 +221,14 @@ bool Directed_acyclic_graph::connected( int i, int j) const{
 }
 
 /*
-	topological_sort() method.
+	topological_sort() method. first I create tmpArr and sortArr. I copy my inDegreeArr to tmpArr
+	so that the values in inDegreeArr does not get changed. I'm doing this to prevent any errors when
+	I call this method several times. 
+	I check to see which of the vertices requires no input(indegree of 0), and copy their priority 
+	to the new array that I created, named sortArr. I set priorities of other vertices to infinity(INF) in the sortArr.
+	Then I pass sortArr into the findMin method to find out of those vertices, which vertex has the highest priority.
+	Once I print the vertex with 0 indegree, i decrement vertices that are outdegree of the vertex that I just printed in tmpArr.
+	Delete any arrays that I created.
 */
 void Directed_acyclic_graph::topological_sort() const{
 	int *tmpArr = new int[size];
@@ -235,6 +237,7 @@ void Directed_acyclic_graph::topological_sort() const{
 	for(int k = 0; k < size; k++)
 	{
 		tmpArr[k] = inDegreeArr[k];
+		//std::cout<<" "<<priorityArr[k]; (This is for testing)
 	}
 
 	for(int p =0; p < size; p++)
@@ -244,6 +247,7 @@ void Directed_acyclic_graph::topological_sort() const{
 			if(tmpArr[k] == 0)
 			{
 				sortArr[k] = priorityArr[k];
+
 			}	
 			else
 			{
@@ -252,32 +256,29 @@ void Directed_acyclic_graph::topological_sort() const{
 		}
 
 		int index = findMin(sortArr);
-		std::cout<<"-";
-		std::cout<<index;
 		//std::cout<<"-";
+		std::cout<<index;
+		std::cout<<"-";
 
 		tmpArr[index] = -1;	
 
-
-
-	for (int n = 0; n < size; n++)
-	{
-		if(adjacent(index, n))
+		for (int n = 0; n < size; n++)
 		{
-			  tmpArr[n]--;
+			if(adjacent(index, n))
+			{
+				  tmpArr[n]--;
+			}
 		}
 	}
-	}
-
-
-//std::numeric_limits<double>::infinity();
-
 	delete [] tmpArr;
 	delete [] sortArr;
 }
 
 /*
-	findMin() method.
+	findMin() method. This method finds the highest priority (so the priority with less number)
+	I have a variable called minValue which is INF. This variable is to compare those vertices and find the minimun value.
+	Once I find the minimum value, I same the index of the minimum value into the varibale named index.
+	Return index
 */
 double Directed_acyclic_graph::findMin( double* sortArr) const{
 	double minValue = std::numeric_limits<double>::infinity();
@@ -292,14 +293,13 @@ double Directed_acyclic_graph::findMin( double* sortArr) const{
 		}
 	}
 
-
 	return index;
 }
 
-
 //Mutators
 /*
-	set_priority() method.
+	set_priority() method. If some vertex has the argument priority, I return false.
+	Else, it sets the vertex of i to the argument priority.
 */
 bool Directed_acyclic_graph::set_priority( int i, double priority ){
 	for(int k = 0; k<size; k++)
@@ -316,7 +316,7 @@ bool Directed_acyclic_graph::set_priority( int i, double priority ){
 
 /*
 	insert_edge() method. Checks if i or j are less than 0 or greater than the size and if any of them are,
-	we throw illegal_argument() error. Check if i and j are connected and if they are, returns false. 
+	we throw illegal_argument() error. Check if i and j are connected or adjacent and if they are, returns false. 
 	Else, I turn the index of i and j in my 2-dimensional array to true, increment edge count, indegree array, outdegree
 	and return true.
 */
@@ -326,7 +326,7 @@ bool Directed_acyclic_graph::insert_edge( int i, int j ){
 		throw illegal_argument();
 	}
 
-	if(connected(j,i))
+	if(connected(j,i) || adjacent(i, j))
 	{
 		return false;
 	}
@@ -339,7 +339,6 @@ bool Directed_acyclic_graph::insert_edge( int i, int j ){
 		outDegreeArr[i]++;
 		return true;
 	}
-
 
 }
 
