@@ -22,13 +22,13 @@
 //template <typename Type>
 class Directed_acyclic_graph {
 	private:
-		int size;
-		int countEdge;
-		int *inDegreeArr;
-		int *outDegreeArr;
-		double *priorityArr;
-		bool **array;
-		double findMin(double*) const;
+		int size; //size of the 2x2 array
+		int countEdge; //counting the edge
+		int *inDegreeArr; //in-degree array
+		int *outDegreeArr; //out-degree array
+		double *priorityArr; //priority array
+		bool **array; // 2x2 array
+		double findMin(double*) const; // method that finds priority
 
 	public:
 		Directed_acyclic_graph( int = 10 );
@@ -61,11 +61,12 @@ void Directed_acyclic_graph::swap( Directed_acyclic_graph &dag ) {
 	// Swap all your member variables
 }
 
-//Constructor
-//template <typename Type>
+/*
+	Constructor. initializes all the arrays, size to default, countEdge to 0
+*/
 Directed_acyclic_graph::Directed_acyclic_graph( int n ):
 size(n),
-countEdge(0),
+countEdge(0),	//initially edge count is 0
 inDegreeArr(new int[size]),
 outDegreeArr(new int[size]),
 priorityArr(new double[size]),
@@ -73,14 +74,16 @@ array(new bool*[size]){
 
 	for(int i = 0; i < size; i++)
 	{
-		array[i] = new bool[size];
-		inDegreeArr[i] = 0;
-		outDegreeArr[i] = 0;
+		array[i] = new bool[size]; //making it 2-dimentional array
+		inDegreeArr[i] = 0;	//setting all the indegree to 0
+		outDegreeArr[i] = 0; //setting all the outdegree to 0
 	}
 }
 
-//Destructor
-//emplate <typename Type>
+
+/*
+	Destructor. Sets the size and edge count to 0. Deleting all the arrays.
+*/
 Directed_acyclic_graph::~Directed_acyclic_graph(){
 	size = 0;
 	countEdge = 0;
@@ -94,14 +97,14 @@ Directed_acyclic_graph::~Directed_acyclic_graph(){
 	}
 
 	delete[] array;
-	array = nullptr;
+	//array = nullptr;
 	
 
 }
 
-
-//Copy Constructor
-//template <typename Type>
+/*
+	Copy constructor. Copying all the arrays.
+*/
 Directed_acyclic_graph::Directed_acyclic_graph(Directed_acyclic_graph const &copyArray) :
 size(copyArray.size),
 countEdge(copyArray.countEdge),
@@ -112,7 +115,7 @@ array(new bool*[size])
 {
 	for (int i = 0; i < size; i++)
 	{
-		
+		//copying arrays index by index
 		inDegreeArr[i] = copyArray.inDegreeArr[size];
 		outDegreeArr[i] = copyArray.outDegreeArr[size];
 		priorityArr[i] = copyArray.priorityArr[size];
@@ -132,8 +135,12 @@ Directed_acyclic_graph &Directed_acyclic_graph::operator = ( Directed_acyclic_gr
 	return *this;
 }
 
-//Accessors
-//template <typename Type>
+/*
+	in_degree() method. Checks if the i is less than 0 or greater than the size and if they are,
+	we throw illegal_argument() error. Else, we return indegree of the index i by returning the 
+	indegree array of index i. 
+
+*/
 int Directed_acyclic_graph::in_degree( int i ) const{
 	if(i < 0 || i > size)
 	{
@@ -142,7 +149,12 @@ int Directed_acyclic_graph::in_degree( int i ) const{
 	return inDegreeArr[i];
 }
 
-//template <typename Type>
+/*
+	out_degree() method. Checks if the i is less than 0 or greater than the size and if they are,
+	we throw illegal_argument() error. Else, we return outdegree of the index i by returning the 
+	outdegree array of index i. 
+
+*/
 int Directed_acyclic_graph::out_degree( int i ) const{
 	if(i < 0 || i > size)
 	{
@@ -151,13 +163,17 @@ int Directed_acyclic_graph::out_degree( int i ) const{
 	return outDegreeArr[i];
 }
 
-//Returns number of edges in the graph
-//template <typename Type>
+/*
+	edge_count() method. Returns the number of edges
+*/
 int Directed_acyclic_graph::edge_count() const{
 	return countEdge;
 }
 
-//template <typename Type>
+/*
+	adjacent() method. Checks if i or j are less than 0 or greater than the size and if any of them are,
+	we throw illegal_argument() error. I check if they are adjacent and if they are, I return true else, false.
+*/
 bool Directed_acyclic_graph::adjacent( int i, int j) const{
 	if((i < 0 || i > size) || (j < 0 || j > size))
 	{
@@ -174,7 +190,13 @@ bool Directed_acyclic_graph::adjacent( int i, int j) const{
 	}
 }
 
-//template<typename Type>
+/*
+	connected() method. I created a queue and push i into the queue.
+	while my queue is not empty, I create a temporary integer variable(tmp) and 
+	tmp is equal to the first element in queue. Then I pop queue and chech to see if it is 
+	equal to j, then i return true. This means i = j, just one vertex. 
+	If i is not equal to j, I traverse my 2 dimensional array to check if they are true which means they are connected.
+*/
 bool Directed_acyclic_graph::connected( int i, int j) const{
 
 
@@ -195,6 +217,7 @@ bool Directed_acyclic_graph::connected( int i, int j) const{
 				if(array[tmp][k])
 				{
 					queue.push(k);
+					//return true?
 				}
 			}
 		}
@@ -202,7 +225,9 @@ bool Directed_acyclic_graph::connected( int i, int j) const{
 	return false;
 }
 
-//template<typename Type>
+/*
+	topological_sort() method.
+*/
 void Directed_acyclic_graph::topological_sort() const{
 	int *tmpArr = new int[size];
 	double *sortArr = new double[size];
@@ -225,19 +250,35 @@ void Directed_acyclic_graph::topological_sort() const{
 				sortArr[k] = std::numeric_limits<double>::infinity();
 			}
 		}
+
 		int index = findMin(sortArr);
 		std::cout<<"-";
 		std::cout<<index;
-		std::cout<<"-";
+		//std::cout<<"-";
 
 		tmpArr[index] = -1;	
+
+
+
+	for (int n = 0; n < size; n++)
+	{
+		if(adjacent(index, n))
+		{
+			  tmpArr[n]--;
+		}
+	}
 	}
 
 
 //std::numeric_limits<double>::infinity();
 
+	delete [] tmpArr;
+	delete [] sortArr;
 }
 
+/*
+	findMin() method.
+*/
 double Directed_acyclic_graph::findMin( double* sortArr) const{
 	double minValue = std::numeric_limits<double>::infinity();
 	int index;
@@ -257,7 +298,9 @@ double Directed_acyclic_graph::findMin( double* sortArr) const{
 
 
 //Mutators
-//template <typename Type>
+/*
+	set_priority() method.
+*/
 bool Directed_acyclic_graph::set_priority( int i, double priority ){
 	for(int k = 0; k<size; k++)
 	{
@@ -271,7 +314,12 @@ bool Directed_acyclic_graph::set_priority( int i, double priority ){
 	return true;
 }
 
-//template <typename Type>
+/*
+	insert_edge() method. Checks if i or j are less than 0 or greater than the size and if any of them are,
+	we throw illegal_argument() error. Check if i and j are connected and if they are, returns false. 
+	Else, I turn the index of i and j in my 2-dimensional array to true, increment edge count, indegree array, outdegree
+	and return true.
+*/
 bool Directed_acyclic_graph::insert_edge( int i, int j ){
 	if((i < 0 || i > size) || (j < 0 || j > size))
 	{
@@ -295,7 +343,10 @@ bool Directed_acyclic_graph::insert_edge( int i, int j ){
 
 }
 
-//template <typename Type>
+/*
+	clear_edge() method. Resets both indegree and outdegree array to 0.
+	sets edge count back to 0
+*/
 void Directed_acyclic_graph::clear_edges(){
 	for(int i = 0; i < size; i++)
 	{
@@ -309,7 +360,9 @@ void Directed_acyclic_graph::clear_edges(){
 	countEdge = 0;
 }
 
-//template <typename Type>
+/*
+	reset_priorities()) method. Resets the priority array back to what it was.
+*/
 void Directed_acyclic_graph::reset_priorities(){
 	for(int i = 0; i<size; i++)
 	{
