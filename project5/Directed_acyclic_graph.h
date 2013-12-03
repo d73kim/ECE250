@@ -56,11 +56,6 @@ class Directed_acyclic_graph {
 
 //There are no templates in this project, make a use of std::queue<Type> container
 
-
-void Directed_acyclic_graph::swap( Directed_acyclic_graph &dag ) {
-	// Swap all your member variables
-}
-
 /*
 	Constructor. initializes all the arrays, size to default, countEdge to 0
 */
@@ -70,8 +65,8 @@ countEdge(0),	//initially edge count is 0
 inDegreeArr(new int[size]),
 outDegreeArr(new int[size]),
 priorityArr(new double[size]),
-array(new bool*[size]){
-
+array(new bool*[size])
+{
 	for(int i = 0; i < size; i++)
 	{
 		array[i] = new bool[size]; //making it 2-dimentional array
@@ -116,15 +111,30 @@ array(new bool*[size])
 		inDegreeArr[i] = copyArray.inDegreeArr[i];
 		outDegreeArr[i] = copyArray.outDegreeArr[i];
 		priorityArr[i] = copyArray.priorityArr[i];
-
+		//copying 2D array
 		array[i] = new bool[size];
 
 		for (int j = 0; j < size; j++)
 		{
-			array[i][j] = copyArray.array[i][j];
+			array[i][j]= copyArray.array[i][j];
 		}
 	}
 }
+
+/*
+	swap() method. When assign is called, I copy the array that I was working with
+	and store it somewhere else. I keep work with the original array and once I finish working with
+	the original array, I call exit. Then I swap it with the copied array.
+*/
+void Directed_acyclic_graph::swap( Directed_acyclic_graph &copyArray ) {
+    std::swap(countEdge, copyArray.countEdge);
+	std::swap(size, copyArray.size);
+	std::swap(array, copyArray.array);
+	std::swap(inDegreeArr, copyArray.inDegreeArr);
+	std::swap(outDegreeArr, copyArray.outDegreeArr);
+	std::swap(priorityArr, copyArray.priorityArr);
+}
+
 
 //Assignment Operator =
 Directed_acyclic_graph &Directed_acyclic_graph::operator = ( Directed_acyclic_graph rhs ) {
@@ -196,6 +206,11 @@ bool Directed_acyclic_graph::adjacent( int i, int j) const{
 	If i is not equal to j, I traverse my 2 dimensional array to check if they are true which means they are connected.
 */
 bool Directed_acyclic_graph::connected( int i, int j) const{
+	if((i < 0 || i > size) || (j < 0 || j > size))
+	{
+		throw illegal_argument();
+	}
+
 	std::queue<int>queue;
 	queue.push(i);
 	while(!queue.empty())
@@ -259,7 +274,7 @@ void Directed_acyclic_graph::topological_sort() const{
 
 		int index = findMin(sortArr);
 
-		std::cout<<"-"<<index;
+		std::cout<<index<<"-";
 
 
 		tmpArr[index] = -1;	
@@ -274,7 +289,7 @@ void Directed_acyclic_graph::topological_sort() const{
 	}
 	delete [] tmpArr;
 	delete [] sortArr;
-	std::cout<<"X";
+    std::cout<<"\bX";
 
 }
 
